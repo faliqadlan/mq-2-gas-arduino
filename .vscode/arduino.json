@@ -1,5 +1,5 @@
 {
     "board": "arduino:avr:uno",
     "port": "COM5",
-    "sketch": "gas-no-lcd.ino"
+    "sketch": "mq-2-gas-arduino.ino"
 }
