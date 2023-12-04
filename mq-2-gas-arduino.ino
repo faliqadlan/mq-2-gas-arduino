@@ -21,8 +21,6 @@ float SmokeCurve[3] = {2.3, 0.53, -0.44};
 #define GAS_CO 1
 #define GAS_SMOKE 2
 
-// LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
-
 void setup()
 {
     Serial.begin(9600);
@@ -57,7 +55,7 @@ void loop()
     iPPM_CO = MQGetGasPercentage(MQRead(MQ_PIN) / Ro, GAS_CO);
     iPPM_Smoke = MQGetGasPercentage(MQRead(MQ_PIN) / Ro, GAS_SMOKE);
     rs = MQRead(MQ_PIN);
-   
+
     Serial.println();
     Serial.print("DATA,TIME,");
     Serial.print(rs);
