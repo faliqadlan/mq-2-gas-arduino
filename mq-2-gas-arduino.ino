@@ -59,6 +59,8 @@ void setup()
     // Serial.print("GAS_SENSOR_PIN: ");
     // Serial.println(GAS_SENSOR_PIN);
     // Serial.println("Pin mode: INPUT");
+
+    Serial.println("LABEL,Time,RS,Ro,RS/Ro,Smoke,CO,LPG");
 }
 
 void loop()
@@ -100,7 +102,7 @@ void loop()
     // lcd.print(iPPM_Smoke);
     // lcd.print(" ppm");
 
-    Serial.print("LABEL,Time,RS,Ro,RS/Ro,Smoke,CO,LPG");
+   
     Serial.println();
     Serial.print("DATA,TIME,");
     Serial.print(rs);
@@ -114,7 +116,6 @@ void loop()
     Serial.print(iPPM_CO);
     Serial.print(",");
     Serial.print(iPPM_LPG);
-    Serial.println();
 
     delay(200);
 }
