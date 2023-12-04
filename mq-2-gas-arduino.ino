@@ -1,8 +1,5 @@
-#include <LiquidCrystal_I2C.h>
-
 #define GAS_SENSOR_PIN A3 // Change this to the pin you've connected the gas sensor to
 
-LiquidCrystal_I2C lcd(0x27, 16, 2);
 const int MQ_PIN = A0;
 float RO_CLEAN_AIR_FACTOR = 9.83;
 
@@ -30,9 +27,6 @@ void setup()
 {
     Serial.begin(9600);
     pinMode(GAS_SENSOR_PIN, INPUT);
-    lcd.init();
-    lcd.backlight();
-    lcd.setCursor(0, 0);
 
     int timeCal = (CALIBARAION_SAMPLE_TIMES * CALIBRATION_SAMPLE_INTERVAL / 1000);
 
@@ -41,24 +35,13 @@ void setup()
     Serial.println(" seconds");
 
     Serial.println("Calibrating");
-    lcd.print("Calibrating...");
     Ro = MQCalibration(MQ_PIN);
 
     Serial.println("Calibration is done...\n");
-    lcd.print("done!");
-    // Serial.setCursor(0, 1);
     Serial.print("Ro=");
-    lcd.print("Ro= ");
     Serial.print(Ro);
-    lcd.print(Ro);
     Serial.println("kohm");
-    lcd.print("kohm");
     delay(3000);
-
-    // Print the pin number and mode
-    // Serial.print("GAS_SENSOR_PIN: ");
-    // Serial.println(GAS_SENSOR_PIN);
-    // Serial.println("Pin mode: INPUT");
 
     Serial.println("LABEL,Time,RS,Ro,RS/Ro,Smoke,CO,LPG");
 }
@@ -74,34 +57,6 @@ void loop()
     iPPM_CO = MQGetGasPercentage(MQRead(MQ_PIN) / Ro, GAS_CO);
     iPPM_Smoke = MQGetGasPercentage(MQRead(MQ_PIN) / Ro, GAS_SMOKE);
     rs = MQRead(MQ_PIN);
-    // Serial.println(iPPM_Smoke);
-    // lcd.clear();
-    // lcd.setCursor(0, 0);
-    // lcd.print("Concentration of gas ");
-
-    // lcd.setCursor(0,1);
-    // lcd.print("Smoke: ");
-    // Serial.print("Concentration of gas");
-    // Serial.print("Smoke: ");
-
-    // Serial.print("Concentration of gas");
-    // Serial.print("Smoke: ");
-    // Serial.print(iPPM_Smoke);
-    // Serial.println("ppm");
-
-    // Serial.print("Concentration of gas");
-    // Serial.print("CO: ");
-    // Serial.print(iPPM_CO);
-    // Serial.println("ppm");
-
-    // Serial.print("Concentration of gas");
-    // Serial.print("LPG: ");
-    // Serial.print(iPPM_LPG);
-    // Serial.println("ppm");
-
-    // lcd.print(iPPM_Smoke);
-    // lcd.print(" ppm");
-
    
     Serial.println();
     Serial.print("DATA,TIME,");
